@@ -3,18 +3,17 @@ package me.hechfx.project.command.vanilla.info
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.channel.createMessage
 import kotlinx.coroutines.flow.count
-import me.hechfx.project.api.Command
+import me.hechfx.project.api.TextCommand
 import me.hechfx.project.api.CommandContext
 import me.hechfx.project.util.CommandCategory
 import me.hechfx.project.util.constant.Constants.EMBED_DEFAULT_COLOR
 import me.hechfx.project.util.constant.Constants.OWNER_ID
 
-class BotInfoCommand: Command {
-    override val labels = listOf("botinfo")
-    override val description = "Bot Informations"
-    override val category = CommandCategory.INFO
-    override val onlyDev = false
-    override val debugMode = false
+class BotInfoCommand: TextCommand(Options) {
+    companion object Options: TextCommand.Options(listOf("botinfo")) {
+        override var description = "Bot Informations"
+        override var category = CommandCategory.INFO
+    }
 
     override suspend fun run(context: CommandContext) {
         val owner = context.client.getUser(Snowflake(OWNER_ID))!!

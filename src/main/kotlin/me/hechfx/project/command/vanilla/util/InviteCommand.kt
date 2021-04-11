@@ -1,18 +1,16 @@
 package me.hechfx.project.command.vanilla.util
 
-import dev.kord.core.behavior.channel.createEmbed
 import dev.kord.core.behavior.channel.createMessage
-import me.hechfx.project.api.Command
+import me.hechfx.project.api.TextCommand
 import me.hechfx.project.api.CommandContext
 import me.hechfx.project.util.CommandCategory
 import me.hechfx.project.util.constant.Constants.EMBED_DEFAULT_COLOR
 
-class InviteCommand: Command {
-    override val labels = listOf("invite", "convidar", "adicionar")
-    override val category = CommandCategory.UTIL
-    override val description = "???"
-    override val onlyDev = false
-    override val debugMode = false
+class InviteCommand: TextCommand(Options) {
+    companion object Options: TextCommand.Options(listOf("invite", "convidar", "adicionar")) {
+        override var category = CommandCategory.UTIL
+        override var description = "???"
+    }
 
     override suspend fun run(context: CommandContext) {
         context.textChannel.createMessage {
